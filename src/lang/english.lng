@@ -8,3 +8,10 @@ STR_WEBSITE                         :https://github.com/2TallTyler/trade_center/
 
 STR_TOWN                            :{STRING}
 STR_STATION                         :{STRING} {STRING}
+
+STR_ERR_LOCATION                    :Trade Center must be in international waters, at least 12 tiles from land.
+
+STR_TRADE_CENTER                    :Trade Center
+
+STR_TRADE_CENTER_HELPTEXT           :{YELLOW}Trade resources {BLACK}with other players at this industry's neutral station.
+STR_TRADE_CENTER_FUNDTEXT           :For multiplayer trading.

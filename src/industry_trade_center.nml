@@ -1,0 +1,61 @@
+spriteset (spr_trade_center, "src/gfx/trade_center_8bpp.png") {
+    //left_x, upper_y, width, height, offset_x, offset_y
+    [ 0,        0,      64,     78,     -31,        -46,    NOCROP | ANIM]
+}
+
+spritelayout sprlay_trade_center {
+    ground {
+		sprite: 4061;
+	}
+	building {
+		sprite: spr_trade_center;
+		recolour_mode: RECOLOUR_REMAP; 
+		palette: PALETTE_USE_DEFAULT;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, ind_tile_trade_center) {
+	property {
+		substitute: 0;
+		land_shape_flags: bitmask(LSF_ALLOW_ON_WATER);
+		accepted_cargos: [];
+	}
+	graphics {
+		default: sprlay_trade_center;
+	}
+}
+
+tilelayout tilelayout_trade_center {
+	0,0: 24;
+	0,1: 24;
+	1,0: 24;
+	1,1: ind_tile_trade_center;
+}
+
+switch (FEAT_INDUSTRIES, SELF, loc_check_trade_center, water_distance >= 12) {1: return CB_RESULT_LOCATION_ALLOW; return string(STR_ERR_LOCATION);}
+
+item (FEAT_INDUSTRIES, industry_trade_Center) {
+    property {
+        substitute: 0;
+        name: string(STR_TRADE_CENTER);
+        nearby_station_name: string(STR_STATION, string(STR_TOWN), string(STR_TRADE_CENTER));
+		life_type: IND_LIFE_TYPE_BLACK_HOLE;
+		spec_flags: bitmask(IND_FLAG_BUILT_ON_WATER);
+        cargo_types: [];
+        layouts: [tilelayout_trade_center];
+        prob_map_gen: 0;
+        prob_in_game: 0;
+        fund_cost_multiplier: 0;
+        map_colour: 184;
+    }
+
+    graphics {
+        location_check: loc_check_trade_center;
+        /* Don't allow any production changes */
+		monthly_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		random_prod_change: CB_RESULT_IND_PROD_NO_CHANGE;
+		extra_text_industry: string(STR_TRADE_CENTER_HELPTEXT);
+		extra_text_fund: string(STR_TRADE_CENTER_FUNDTEXT);
+        colour: founder_colour1;
+    }
+}

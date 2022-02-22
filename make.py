@@ -6,10 +6,10 @@
 newgrf_name = "trade_center"
 
 # Files which should be first, in order (header, cargotable, etc)
-header_stuff = []
+header_stuff = ["header"]
 
 # Files to place in alphabetical order below
-unordered_stuff = []
+unordered_stuff = ["industry_trade_center"]
 
 # Do you want to copy the completed NewGRF to your OpenTTD folder? (True/False)
 copy_bool = True
