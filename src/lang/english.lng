@@ -1,0 +1,10 @@
+##grflangid 0x01
+##plural 0
+
+STR_GRF_NAME                        :{TITLE} {VERSION}
+STR_GRF_DESC                        :{ORANGE}A neutral free trade center for multiplayer OpenTTD games.{BLACK} Trade resources or connect CargoDist networks here.{}{}{ORANGE}Visit website for more info!{}{}{BLACK}Created by 2TallTyler.
+
+STR_WEBSITE                         :https://github.com/2TallTyler/trade_center/blob/main/README.md
+
+STR_TOWN                            :{STRING}
+STR_STATION                         :{STRING} {STRING}
