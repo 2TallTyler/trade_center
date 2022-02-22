@@ -1,4 +1,9 @@
-spriteset (spr_trade_center, "src/gfx/trade_center_8bpp.png") {
+spriteset (spr_trade_center, "src/gfx/trade_center.png") {
+    //left_x, upper_y, width, height, offset_x, offset_y
+    [ 0,        0,      64,     78,     -31,        -46,    NOCROP | ANIM]
+}
+
+spriteset (spr_trade_center_construction, "src/gfx/trade_center_construction.png") {
     //left_x, upper_y, width, height, offset_x, offset_y
     [ 0,        0,      64,     78,     -31,        -46,    NOCROP | ANIM]
 }
@@ -9,9 +14,23 @@ spritelayout sprlay_trade_center {
 	}
 	building {
 		sprite: spr_trade_center;
-		recolour_mode: RECOLOUR_REMAP; 
+		recolour_mode: RECOLOUR_REMAP;
 		palette: PALETTE_USE_DEFAULT;
 	}
+}
+
+spritelayout sprlay_trade_center_construction {
+    ground {
+		sprite: 4061;
+	}
+	building {
+		sprite: spr_trade_center_construction;
+	}
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, switch_construction_sprite, construction_state == 3) {
+    1: return sprlay_trade_center;
+    return sprlay_trade_center_construction;
 }
 
 item (FEAT_INDUSTRYTILES, ind_tile_trade_center) {
@@ -21,7 +40,7 @@ item (FEAT_INDUSTRYTILES, ind_tile_trade_center) {
 		accepted_cargos: [];
 	}
 	graphics {
-		default: sprlay_trade_center;
+		default: switch_construction_sprite;
 	}
 }
 
